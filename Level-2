@@ -1,0 +1,97 @@
+11.Write a program to print the multiplication table of a given number.
+c
+Copy code
+#include <stdio.h>
+
+int main() {
+    int num, i;
+    
+    printf("Enter a number: ");
+    scanf("%d", &num);
+    
+    printf("Multiplication table of %d:\n", num);
+    
+    for (i = 1; i <= 10; i++) {
+        printf("%d x %d = %d\n", num, i, num * i);
+    }
+    
+    return 0;
+}
+Output:
+
+less
+Copy code
+Enter a number: 7
+Multiplication table of 7:
+7 x 1 = 7
+7 x 2 = 14
+7 x 3 = 21
+7 x 4 = 28
+7 x 5 = 35
+7 x 6 = 42
+7 x 7 = 49
+7 x 8 = 56
+7 x 9 = 63
+7 x 10 = 70
+
+12.Write a program to check if a year is a leap year.
+c
+Copy code
+#include <stdio.h>
+
+int isLeapYear(int year) {
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+int main() {
+    int year;
+    
+    printf("Enter a year: ");
+    scanf("%d", &year);
+    
+    if (isLeapYear(year)) {
+        printf("%d is a leap year.\n", year);
+    } else {
+        printf("%d is not a leap year.\n", year);
+    }
+    
+    return 0;
+}
+Output:
+
+yaml
+Copy code
+Enter a year: 2020
+2020 is a leap year.
+
+13.Write a program to calculate the sum of digits in a number.
+c
+Copy code
+#include <stdio.h>
+
+int main() {
+    int num, digit, sum = 0;
+    
+    printf("Enter a number: ");
+    scanf("%d", &num);
+    
+    while (num != 0) {
+        digit = num % 10;
+        sum += digit;
+        num /= 10;
+    }
+    
+    printf("The sum of digits is: %d\n", sum);
+    
+    return 0;
+}
+Output:
+
+python
+Copy code
+Enter a number: 987
+The sum of digits is: 24
