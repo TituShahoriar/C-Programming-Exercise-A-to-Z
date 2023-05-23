@@ -1,0 +1,203 @@
+Level 6: Structures and Pointers
+
+27. Write a program to create a structure representing a student with name and roll number.
+
+```c
+#include <stdio.h>
+
+struct Student {
+    char name[50];
+    int rollNumber;
+};
+
+int main() {
+    struct Student student;
+    
+    printf("Enter name: ");
+    scanf("%s", student.name);
+    
+    printf("Enter roll number: ");
+    scanf("%d", &student.rollNumber);
+    
+    printf("\nStudent Details\n");
+    printf("Name: %s\n", student.name);
+    printf("Roll Number: %d\n", student.rollNumber);
+    
+    return 0;
+}
+```
+
+Output:
+```
+Enter name: John
+Enter roll number: 12345
+
+Student Details
+Name: John
+Roll Number: 12345
+```
+
+28. Write a program to create a structure representing a circle with radius and area.
+
+```c
+#include <stdio.h>
+
+#define PI 3.14159
+
+struct Circle {
+    double radius;
+    double area;
+};
+
+void calculateArea(struct Circle *circle) {
+    circle->area = PI * circle->radius * circle->radius;
+}
+
+int main() {
+    struct Circle circle;
+    
+    printf("Enter the radius of the circle: ");
+    scanf("%lf", &circle.radius);
+    
+    calculateArea(&circle);
+    
+    printf("Circle Details\n");
+    printf("Radius: %.2lf\n", circle.radius);
+    printf("Area: %.2lf\n", circle.area);
+    
+    return 0;
+}
+```
+
+Output:
+```
+Enter the radius of the circle: 5.0
+Circle Details
+Radius: 5.00
+Area: 78.54
+```
+
+29. Write a program to create a structure representing a bank account with deposit and withdrawal functions.
+
+```c
+#include <stdio.h>
+
+struct BankAccount {
+    int accountNumber;
+    double balance;
+};
+
+void deposit(struct BankAccount *account, double amount) {
+    account->balance += amount;
+    printf("Deposit of $%.2lf successful.\n", amount);
+}
+
+void withdraw(struct BankAccount *account, double amount) {
+    if (amount <= account->balance) {
+        account->balance -= amount;
+        printf("Withdrawal of $%.2lf successful.\n", amount);
+    } else {
+        printf("Insufficient balance.\n");
+    }
+}
+
+int main() {
+    struct BankAccount account;
+    account.accountNumber = 123456789;
+    account.balance = 1000.00;
+    
+    printf("Account Number: %d\n", account.accountNumber);
+    printf("Initial Balance: $%.2lf\n\n", account.balance);
+    
+    deposit(&account, 500.00);
+    withdraw(&account, 200.00);
+    withdraw(&account, 2000.00);
+    
+    printf("\nUpdated Balance: $%.2lf\n", account.balance);
+    
+    return 0;
+}
+```
+
+Output:
+```
+Account Number: 123456789
+Initial Balance: $1000.00
+
+Deposit of $500.00 successful.
+Withdrawal of $200.00 successful.
+Insufficient balance.
+
+Updated Balance: $1300.00
+```
+
+30. Write a program to create a linked list and perform basic operations like insertion, deletion, and traversal.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+void insertAtBeginning(struct Node **head, int value) {
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = *head;
+    *head = newNode;
+    printf("
+
+Inserted %d at the beginning.\n", value);
+}
+
+void deleteAtBeginning(struct Node **head) {
+    if (*head == NULL) {
+        printf("List is already empty.\n");
+        return;
+    }
+    struct Node *temp = *head;
+    *head = (*head)->next;
+    printf("Deleted %d from the beginning.\n", temp->data);
+    free(temp);
+}
+
+void displayList(struct Node *head) {
+    printf("Linked List: ");
+    while (head != NULL) {
+        printf("%d ", head->data);
+        head = head->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    struct Node *head = NULL;
+
+    insertAtBeginning(&head, 3);
+    insertAtBeginning(&head, 2);
+    insertAtBeginning(&head, 1);
+
+    displayList(head);
+
+    deleteAtBeginning(&head);
+    deleteAtBeginning(&head);
+
+    displayList(head);
+
+    return 0;
+}
+```
+
+Output:
+```
+Inserted 3 at the beginning.
+Inserted 2 at the beginning.
+Inserted 1 at the beginning.
+Linked List: 1 2 3 
+Deleted 1 from the beginning.
+Deleted 2 from the beginning.
+Linked List: 3 
+```
+
