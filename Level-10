@@ -1,0 +1,169 @@
+Level 10: Additional Topics
+
+40. Write a program to implement multithreading in C.
+
+```c
+#include <stdio.h>
+#include <pthread.h>
+
+#define NUM_THREADS 5
+
+void *printHello(void *threadID) {
+    long tid = (long)threadID;
+    printf("Hello from thread %ld\n", tid);
+    pthread_exit(NULL);
+}
+
+int main() {
+    pthread_t threads[NUM_THREADS];
+    int rc;
+    long t;
+
+    for (t = 0; t < NUM_THREADS; t++) {
+        printf("Creating thread %ld\n", t);
+        rc = pthread_create(&threads[t], NULL, printHello, (void *)t);
+
+        if (rc) {
+            printf("Error: Unable to create thread, %d\n", rc);
+            return 1;
+        }
+    }
+
+    pthread_exit(NULL);
+}
+```
+
+Output:
+```
+Creating thread 0
+Creating thread 1
+Creating thread 2
+Creating thread 3
+Creating thread 4
+Hello from thread 0
+Hello from thread 1
+Hello from thread 2
+Hello from thread 3
+Hello from thread 4
+```
+
+41. Write a program to perform matrix multiplication.
+
+```c
+#include <stdio.h>
+
+#define SIZE 3
+
+void matrixMultiplication(int A[][SIZE], int B[][SIZE], int C[][SIZE]) {
+    int i, j, k;
+
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
+            C[i][j] = 0;
+
+            for (k = 0; k < SIZE; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
+void displayMatrix(int matrix[][SIZE]) {
+    int i, j;
+
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+
+        printf("\n");
+    }
+}
+
+int main() {
+    int A[SIZE][SIZE] = {{1, 2, 3},
+                         {4, 5, 6},
+                         {7, 8, 9}};
+
+    int B[SIZE][SIZE] = {{9, 8, 7},
+                         {6, 5, 4},
+                         {3, 2, 1}};
+
+    int C[SIZE][SIZE];
+
+    matrixMultiplication(A, B, C);
+
+    printf("Matrix A:\n");
+    displayMatrix(A);
+
+    printf("\nMatrix B:\n");
+    displayMatrix(B);
+
+    printf("\nMatrix C (Result of multiplication):\n");
+    displayMatrix(C);
+
+    return 0;
+}
+```
+
+Output:
+```
+Matrix A:
+1 2 3 
+4 5 6 
+7 8 9 
+
+Matrix B:
+9 8 7 
+6 5 4 
+3 2 1 
+
+Matrix C (Result of multiplication):
+30 24 18 
+84 69 54 
+138 114 90
+```
+
+42. Write a program to implement binary search in a sorted array.
+
+```c
+#include <stdio.h>
+
+int binarySearch(int arr[], int left, int right, int target) {
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == target)
+            return mid;
+
+        if (arr[mid] < target)
+            left = mid + 1;
+        else
+            right = mid - 1;
+   
+
+ }
+
+    return -1;
+}
+
+int main() {
+    int arr[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 10;
+
+    int result = binarySearch(arr, 0, n - 1, target);
+
+    if (result == -1)
+        printf("Element not found\n");
+    else
+        printf("Element found at index %d\n", result);
+
+    return 0;
+}
+```
+
+Output:
+```
+Element found at index 4
+```
