@@ -1,23 +1,24 @@
 <h1 align="center">
-  <img src="https://example.com/path/to/icon.png" alt="C Programming Icon" width="100"><br>
-  C Programming Learning Path
+  
+  <span style="color: #ffcc00;">C Programming Learning Path</span>
 </h1>
 
 <p align="center">
-  <img src="https://example.com/path/to/emoji.png" alt="Smiling Emoji" width="100">
+  
 </p>
 
 <p align="center">
-  Welcome to my C Programming Learning Path! This repository contains the solutions to various C programming exercises and examples to help you learn and improve your C programming skills.
+  <span style="color: #ffcc00;">Welcome to my</span> <span style="color: #00ff00;">C Programming Learning Path!</span> This repository contains the solutions to various C programming exercises and examples to help you learn and improve your C programming skills.
 </p>
 
 ## About Me
 
-I am Md Fahim Shahoriar Titu, a recent graduate (BSc in CSE) from NSU. I am passionate about programming and enjoy sharing my knowledge with others.
+<span style="color: #ffcc00;">I am Md Fahim Shahoriar Titu,</span> a recent graduate (BSc in CSE) from NSU. I am passionate about programming and enjoy sharing my knowledge with others.
 
 - GitHub: [TituShahoriar](https://github.com/TituShahoriar)
 - Email: fahimshahoriar66@gmail.com
-- LinkedIn: [Md Fahim Shahoriar Titu](https://www.linkedin.com/in/yourlinkedinprofile/)
+- Facebook: [fahim.shahoriar.t2](https://www.facebook.com/fahim.shahoriar.t2)
+- LinkedIn: [Fahim Shahoriar](https://www.linkedin.com/in/fahim-shahoriar/)
 
 ## Learning Path
 
@@ -106,3 +107,4 @@ The learning path is structured into different levels, starting from the basics 
 
 Feel free to explore the repository, try out the exercises, and expand your knowledge of C programming. Happy coding!
 
+<span style="color: #ffcc00;">Note:</span> The solutions to the programming exercises are provided in separate files within the repository.
