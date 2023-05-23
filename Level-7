@@ -1,0 +1,114 @@
+Level 7: Memory Management
+
+31. Write a program to dynamically allocate memory for an array.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int size;
+    int *array;
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+
+    array = (int *)malloc(size * sizeof(int));
+
+    if (array == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+
+    printf("Dynamic memory allocation successful.\n");
+
+    // Perform operations with the dynamically allocated array
+
+    free(array);
+
+    return 0;
+}
+```
+
+Output:
+```
+Enter the size of the array: 5
+Dynamic memory allocation successful.
+```
+
+32. Write a program to free dynamically allocated memory.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *ptr = (int *)malloc(sizeof(int));
+
+    if (ptr == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+
+    *ptr = 10;
+    printf("Value: %d\n", *ptr);
+
+    free(ptr);
+    printf("Memory freed.\n");
+
+    return 0;
+}
+```
+
+Output:
+```
+Value: 10
+Memory freed.
+```
+
+33. Write a program to swap two numbers without using a temporary variable.
+
+```c
+#include <stdio.h>
+
+void swap(int *a, int *b) {
+    *a = *a + *b;
+    *b = *a - *b;
+    *a = *a - *b;
+}
+
+int main() {
+    int num1, num2;
+
+    printf("Enter value for num1: ");
+    scanf("%d", &num1);
+
+    printf("Enter value for num2: ");
+    scanf("%d", &num2);
+
+    printf("Before swapping:\n");
+    printf("num1 = %d\n", num1);
+    printf("num2 = %d\n", num2);
+
+    swap(&num1, &num2);
+
+    printf("After swapping:\n");
+    printf("num1 = %d\n", num1);
+    printf("num2 = %d\n", num2);
+
+    return 0;
+}
+```
+
+Output:
+```
+Enter value for num1: 10
+Enter value for num2: 20
+Before swapping:
+num1 = 10
+num2 = 20
+After swapping:
+num1 = 20
+num2 = 10
+```
+
