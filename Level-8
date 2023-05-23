@@ -1,0 +1,118 @@
+Level 8: File Input/Output (I/O)
+
+34. Write a program to read input from the user using the scanf() function.
+
+```c
+#include <stdio.h>
+
+int main() {
+    int num;
+    char name[50];
+
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    printf("Enter your name: ");
+    scanf("%s", name);
+
+    printf("\nYou entered:\n");
+    printf("Number: %d\n", num);
+    printf("Name: %s\n", name);
+
+    return 0;
+}
+```
+
+Output:
+```
+Enter a number: 10
+Enter your name: John
+
+You entered:
+Number: 10
+Name: John
+```
+
+35. Write a program to print output to the console using the printf() function.
+
+```c
+#include <stdio.h>
+
+int main() {
+    int num1 = 5, num2 = 10;
+    float average = (num1 + num2) / 2.0;
+
+    printf("The sum of %d and %d is %d.\n", num1, num2, num1 + num2);
+    printf("The average of %d and %d is %.2f.\n", num1, num2, average);
+
+    return 0;
+}
+```
+
+Output:
+```
+The sum of 5 and 10 is 15.
+The average of 5 and 10 is 7.50.
+```
+
+36. Write a program to read and write binary files.
+
+```c
+#include <stdio.h>
+
+struct Student {
+    char name[50];
+    int rollNumber;
+};
+
+int main() {
+    struct Student student;
+    FILE *file;
+
+    // Writing to a binary file
+    file = fopen("students.bin", "wb");
+
+    if (file == NULL) {
+        printf("Failed to open file for writing.\n");
+        return 1;
+    }
+
+    printf("Enter name: ");
+    scanf("%s", student.name);
+
+    printf("Enter roll number: ");
+    scanf("%d", &student.rollNumber);
+
+    fwrite(&student, sizeof(struct Student), 1, file);
+    fclose(file);
+
+    // Reading from a binary file
+    file = fopen("students.bin", "rb");
+
+    if (file == NULL) {
+        printf("Failed to open file for reading.\n");
+        return 1;
+    }
+
+    fread(&student, sizeof(struct Student), 1, file);
+
+    printf("\nStudent Details\n");
+    printf("Name: %s\n", student.name);
+    printf("Roll Number: %d\n", student.rollNumber);
+
+    fclose(file);
+
+    return 0;
+}
+```
+
+Output:
+```
+Enter name: John
+Enter roll number: 12345
+
+Student Details
+Name: John
+Roll Number: 12345
+```
+
