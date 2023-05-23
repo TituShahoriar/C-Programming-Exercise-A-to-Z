@@ -1,0 +1,193 @@
+Level 3: Arrays and Pointers
+
+14. Write a program to find the length of an array without using the built-in sizeof() function.
+
+```c
+#include <stdio.h>
+
+int getArrayLength(int *arr) {
+    int length = 0;
+    
+    while (*arr) {
+        length++;
+        arr++;
+    }
+    
+    return length;
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int length = getArrayLength(arr);
+    
+    printf("The length of the array is: %d\n", length);
+    
+    return 0;
+}
+```
+
+Output:
+```
+The length of the array is: 5
+```
+
+15. Write a program to copy elements from one array to another.
+
+```c
+#include <stdio.h>
+
+void copyArray(int *source, int *destination, int length) {
+    int i;
+    
+    for (i = 0; i < length; i++) {
+        *(destination + i) = *(source + i);
+    }
+}
+
+int main() {
+    int source[] = {1, 2, 3, 4, 5};
+    int destination[5];
+    int length = sizeof(source) / sizeof(source[0]);
+    
+    copyArray(source, destination, length);
+    
+    printf("Source array: ");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", source[i]);
+    }
+    printf("\n");
+    
+    printf("Destination array: ");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", destination[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}
+```
+
+Output:
+```
+Source array: 1 2 3 4 5 
+Destination array: 1 2 3 4 5 
+```
+
+16. Write a program to find the largest and smallest elements in an array.
+
+```c
+#include <stdio.h>
+
+void findMinMax(int *arr, int length, int *min, int *max) {
+    *min = *max = arr[0];
+    
+    for (int i = 1; i < length; i++) {
+        if (arr[i] < *min) {
+            *min = arr[i];
+        }
+        if (arr[i] > *max) {
+            *max = arr[i];
+        }
+    }
+}
+
+int main() {
+    int arr[] = {5, 3, 8, 2, 7};
+    int length = sizeof(arr) / sizeof(arr[0]);
+    int min, max;
+    
+    findMinMax(arr, length, &min, &max);
+    
+    printf("Minimum element: %d\n", min);
+    printf("Maximum element: %d\n", max);
+    
+    return 0;
+}
+```
+
+Output:
+```
+Minimum element: 2
+Maximum element: 8
+```
+
+17. Write a program to reverse the elements in an array.
+
+```c
+#include <stdio.h>
+
+void reverseArray(int *arr, int length) {
+    int start = 0;
+    int end = length - 1;
+    
+    while (start < end) {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int length = sizeof(arr) / sizeof(arr[0]);
+    
+    printf("Original array: ");
+    for (int i = 0; i < length; i++)
+
+ {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    reverseArray(arr, length);
+    
+    printf("Reversed array: ");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}
+```
+
+Output:
+```
+Original array: 1 2 3 4 5 
+Reversed array: 5 4 3 2 1 
+```
+
+18. Write a program to swap two numbers using pointers.
+
+```c
+#include <stdio.h>
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int num1 = 10;
+    int num2 = 20;
+    
+    printf("Before swap: num1 = %d, num2 = %d\n", num1, num2);
+    
+    swap(&num1, &num2);
+    
+    printf("After swap: num1 = %d, num2 = %d\n", num1, num2);
+    
+    return 0;
+}
+```
+
+Output:
+```
+Before swap: num1 = 10, num2 = 20
+After swap: num1 = 20, num2 = 10
+```
+
+This covers the solutions to the questions in Level 3: Arrays and Pointers. If you have any more questions or need further assistance, feel free to ask!
