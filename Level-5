@@ -1,0 +1,132 @@
+Level 5: File Handling
+
+24. Write a program to read a file and count the number of lines in it.
+
+```c
+#include <stdio.h>
+
+int main() {
+    FILE *file;
+    char filename[100];
+    char ch;
+    int lineCount = 0;
+
+    printf("Enter the filename: ");
+    scanf("%s", filename);
+
+    file = fopen(filename, "r");
+
+    if (file == NULL) {
+        printf("Error opening the file.\n");
+        return 1;
+    }
+
+    while ((ch = fgetc(file)) != EOF) {
+        if (ch == '\n') {
+            lineCount++;
+        }
+    }
+
+    fclose(file);
+
+    printf("The file '%s' contains %d lines.\n", filename, lineCount);
+
+    return 0;
+}
+```
+
+Output:
+```
+Enter the filename: example.txt
+The file 'example.txt' contains 5 lines.
+```
+
+Note: Replace "example.txt" with the actual filename you want to read.
+
+25. Write a program to read a file and find the longest word in it.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_WORD_LENGTH 100
+
+int main() {
+    FILE *file;
+    char filename[100];
+    char word[MAX_WORD_LENGTH];
+    char longestWord[MAX_WORD_LENGTH] = "";
+    int maxWordLength = 0;
+
+    printf("Enter the filename: ");
+    scanf("%s", filename);
+
+    file = fopen(filename, "r");
+
+    if (file == NULL) {
+        printf("Error opening the file.\n");
+        return 1;
+    }
+
+    while (fscanf(file, "%s", word) == 1) {
+        int wordLength = strlen(word);
+        if (wordLength > maxWordLength) {
+            maxWordLength = wordLength;
+            strcpy(longestWord, word);
+        }
+    }
+
+    fclose(file);
+
+    printf("The longest word in the file '%s' is: %s\n", filename, longestWord);
+
+    return 0;
+}
+```
+
+Output:
+```
+Enter the filename: example.txt
+The longest word in the file 'example.txt' is: programming
+```
+
+Note: Replace "example.txt" with the actual filename you want to read.
+
+26. Write a program to write an array of numbers to a file.
+
+```c
+#include <stdio.h>
+
+int main() {
+    FILE *file;
+    char filename[100];
+    int numbers[] = {1, 2, 3, 4, 5};
+    int length = sizeof(numbers) / sizeof(numbers[0]);
+
+    printf("Enter the filename: ");
+    scanf("%s", filename);
+
+    file = fopen(filename, "w");
+
+    if (file == NULL) {
+        printf("Error opening the file.\n");
+        return 1;
+    }
+
+    for (int i = 0; i < length; i++) {
+        fprintf(file, "%d ", numbers[i]);
+    }
+
+    fclose(file);
+
+    printf("The array has been written to the file '%s'.\n", filename);
+
+    return 0;
+}
+```
+
+Output:
+```
+Enter the filename: numbers.txt
+The array has been written to the file 'numbers.txt'.
+```
